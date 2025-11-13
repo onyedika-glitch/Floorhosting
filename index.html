@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floor Hosting - Reliable Web Hosting</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Heroicons for features section -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        /* Base font */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Custom active link style */
+        .nav-link.active {
+            color: #2563EB; /* text-blue-600 */
+            font-weight: 600;
+        }
+
+        /* Styling for the mobile menu button (hamburger) */
+        .hamburger-line {
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger-btn.open .line-1 {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger-btn.open .line-2 {
+            opacity: 0;
+        }
+        .hamburger-btn.open .line-3 {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex-shrink-0 flex items-center nav-link">
+                    <span class="text-2xl font-bold text-blue-600">Floor Hosting</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="index.html" class="nav-link text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium active" data-target="home">Home</a>
+                    <a href="services.html" class="nav-link text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" data-target="services">Services</a>
+                    <a href="about.html" class="nav-link text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" data-target="about">About Us</a>
+                    <a href="faq.html" class="nav-link text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" data-target="faq">FAQ</a>
+                </div>
+                
+                <!-- Desktop CTA -->
+                <div class="hidden md:block">
+                    <a href="auth.html" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="hamburger-btn" type="button" class="hamburger-btn inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <div class="w-6 h-6 flex flex-col justify-around">
+                            <span class="hamburger-line line-1 block w-full h-0.5 bg-current transform"></span>
+                            <span class="hamburger-line line-2 block w-full h-0.5 bg-current"></span>
+                            <span class="hamburger-line line-3 block w-full h-0.5 bg-current transform"></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu, show/hide based on menu state. -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 active" data-target="home">Home</a>
+                <a href="services.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50" data-target="services">Services</a>
+                <a href="about.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50" data-target="about">About Us</a>
+                <a href="faq.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50" data-target="faq">FAQ</a>
+            </div>
+            <div class="px-5 pb-4">
+                <a href="auth.html" class="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        
+        <!-- Section: Home (Hero) -->
+        <section id="home" class="page-section pt-16" data-section-name="home">
+            <div class="relative bg-white overflow-hidden">
+                <div class="max-w-7xl mx-auto">
+                    <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+                        <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                            <polygon points="50,0 100,0 50,100 0,100" />
+                        </svg>
+                        <div class="pt-10 mx-auto max-w-7xl px-4 sm:pt-12 sm:px-6 md:pt-16 lg:pt-20 lg:px-8 xl:pt-28">
+                            <!-- MODIFIED: Changed lg:text-left to lg:text-center -->
+                            <div class="sm:text-center lg:text-center">
+                                <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                                    <span class="block xl:inline">Secure & Reliable</span>
+                                    <span class="block text-blue-600 xl:inline">Web Hosting</span>
+                                </h1>
+                                <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.
+                                </p>
+                                <!-- MODIFIED: Changed lg:justify-start to lg:justify-center -->
+                                <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-center">
+                                    <div class="rounded-md shadow">
+                                        <a href="services.html" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition-colors">
+                                            View Plans
+                                        </a>
+                                    </div>
+                                    <div class="mt-3 sm:mt-0 sm:ml-3">
+                                        <a href="about.html" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10 transition-colors">
+                                            Learn More
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+                    <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://placehold.co/1000x800/3B82F6/FFFFFF?text=Floor+Hosting&font=inter" alt="Hosting servers illustration">
+                </div>
+            </div>
+        </section>
+
+        <!-- === NEW: Features Section === -->
+        <section id="features" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Why Choose Us</h2>
+                    <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                        Everything you need to succeed
+                    </p>
+                </div>
+                <div class="mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+                    <!-- Feature 1 -->
+                    <div class="text-center p-8 bg-white rounded-lg shadow-lg">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-xl font-medium text-gray-900">Blazing Fast Speed</h3>
+                        <p class="mt-4 text-base text-gray-500">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac diam sit amet quam vehicula elementum.
+                        </p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="text-center p-8 bg-white rounded-lg shadow-lg">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-xl font-medium text-gray-900">Rock-Solid Security</h3>
+                        <p class="mt-4 text-base text-gray-500">
+                            Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla quis lorem ut libero.
+                        </p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="text-center p-8 bg-white rounded-lg shadow-lg">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-xl font-medium text-gray-900">24/7 Expert Support</h3>
+                        <p class="mt-4 text-base text-gray-500">
+                            Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- === NEW: Testimonials Section === -->
+        <section id="testimonials" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                        Trusted by developers worldwide
+                    </h2>
+                    <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                        Don't just take our word for it. See what our customers are saying about our service.
+                    </p>
+                </div>
+                <div class="mt-16 grid gap-8 lg:grid-cols-3">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+                        <blockquote class="text-lg text-gray-700 font-medium">
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem."</p>
+                        </blockquote>
+                        <div class="mt-6 flex items-center">
+                            <img class="h-12 w-12 rounded-full" src="https://placehold.co/100x100/EBF4FF/3B82F6?text=A&font=inter" alt="Avatar">
+                            <div class="ml-4">
+                                <div class="text-base font-semibold text-gray-900">Jane Doe</div>
+                                <div class="text-sm text-gray-500">CEO, Tech Inc.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+                        <blockquote class="text-lg text-gray-700 font-medium">
+                            <p>"Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla quis lorem ut libero malesuada feugiat. Sed porttitor lectus nibh. Vestibulum ac diam."</p>
+                        </blockquote>
+                        <div class="mt-6 flex items-center">
+                            <img class="h-12 w-12 rounded-full" src="https://placehold.co/100x100/EBF4FF/3B82F6?text=B&font=inter" alt="Avatar">
+                            <div class="ml-4">
+                                <div class="text-base font-semibold text-gray-900">John Smith</div>
+                                <div class="text-sm text-gray-500">Freelance Developer</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+                        <blockquote class="text-lg text-gray-700 font-medium">
+                            <p>"Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie."</p>
+                        </blockquote>
+                        <div class="mt-6 flex items-center">
+                            <img class="h-12 w-12 rounded-full" src="https://placehold.co/100x100/EBF4FF/3B82F6?text=C&font=inter" alt="Avatar">
+                            <div class="ml-4">
+                                <div class="text-base font-semibold text-gray-900">Alice Johnson</div>
+                                <div class="text-sm text-gray-500">E-commerce Store Owner</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === NEW: Call to Action Section === -->
+        <section id="cta" class="bg-blue-600">
+            <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                    Ready to launch your website?
+                </h2>
+                <p class="mt-4 text-lg text-blue-100">
+                    Get started with Floor Hosting today and experience the best performance and support.
+                </p>
+                <div class="mt-8">
+                    <a href="services.html" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 transition-colors">
+                        View Our Plans
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400" aria-labelledby="footer-heading">
+        <h2 id="footer-heading" class="sr-only">Footer</h2>
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <div class="space-y-8 xl:col-span-1">
+                    <span class="text-3xl font-bold text-white">Floor Hosting</span>
+                    <p class="text-gray-400 text-base">
+                        Reliable hosting from the ground up.
+                    </p>
+                    <div class="flex space-x-6">
+                        <!-- Social Icons (placeholders) -->
+                        <a href="#" class="text-gray-400 hover:text-gray-300">
+                            <span class="sr-only">Facebook</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300">
+                            <span class="sr-only">Twitter</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300">
+                            <span class="sr-only">LinkedIn</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+                       </a>
+                    </div>
+                </div>
+                <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Services</h3>
+                            <ul role="list" class="mt-4 space-y-4">
+                                <li><a href="services.html" class="text-base text-gray-400 hover:text-white">Shared Hosting</a></li>
+                                <li><a href="services.html" class="text-base text-gray-400 hover:text-white">VPS Hosting</a></li>
+                                <li><a href="services.html" class="text-base text-gray-400 hover:text-white">Dedicated Servers</a></li>
+                                <li><a href="services.html" class="text-base text-gray-400 hover:text-white">WordPress Hosting</a></li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Company</h3>
+                            <ul role="list" class="mt-4 space-y-4">
+                                <li><a href="about.html" class="text-base text-gray-400 hover:text-white">About</a></li>
+                                <li><a href="#" class="text-base text-gray-400 hover:text-white">Careers</a></li>
+                                <li><a href="#" class="text-base text-gray-400 hover:text-white">Blog</a></li>
+                                <li><a href="#" class="text-base text-gray-400 hover:text-white">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Support</h3>
+                            <ul role="list" class="mt-4 space-y-4">
+                                <li><a href="faq.html" class="text-base text-gray-400 hover:text-white">FAQ</a></li>
+                                <li><a href="#" class="text-base text-gray-400 hover:text-white">Knowledgebase</a></li>
+                                <li><a href="#" class="text-base text-gray-400 hover:text-white">System Status</a></li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Legal</h3>
+                            <ul role="list" class="mt-4 space-y-4">
+                                <li><a href="#" class="text-base text-gray-400 hover:text-white">Terms of Service</a></li>
+                                <li><a href="#" class="text-base text-gray-400 hover:text-white">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
+                <p class="text-base text-gray-400 md:order-1">&copy; 2025 Floor Hosting, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Mobile Menu Toggle ---
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            hamburgerBtn.addEventListener('click', () => {
+                const isExpanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
+                hamburgerBtn.setAttribute('aria-expanded', !isExpanded);
+                hamburgerBtn.classList.toggle('open');
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- Close mobile menu when a link is clicked ---
+            const mobileNavLinks = mobileMenu.querySelectorAll('a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // No need to hide, as we are navigating to a new page
+                    // This listener is mainly for SPAs, but harmless to keep
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>

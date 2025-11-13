@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Checkout - Floor Hosting</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Heroicons / IonIcons for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Styling for the mobile menu button (hamburger) */
+        .hamburger-line {
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger-btn.open .line-1 {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger-btn.open .line-2 {
+            opacity: 0;
+        }
+        .hamburger-btn.open .line-3 {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Active sidebar link */
+        .sidebar-link.active {
+            background-color: #DBEAFE;
+            color: #2563EB;
+            font-weight: 600;
+        }
+
+        /* Mobile sidebar */
+        #mobile-sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+        #mobile-sidebar.open {
+            transform: translateX(0);
+        }
+
+        /* Payment method card styling */
+        .payment-method {
+            border: 2px solid #E5E7EB;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method.selected {
+            border-color: #2563EB;
+            background-color: #F0F9FF;
+        }
+
+        .payment-method:hover {
+            border-color: #2563EB;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar -->
+        <aside id="mobile-sidebar" class="w-64 bg-white shadow-lg fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 z-50 md:flex flex-col flex-shrink-0">
+            <!-- Logo -->
+            <div class="flex items-center justify-center h-16 shadow-sm">
+                <a href="index.html" class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-blue-600">Floor Hosting</span>
+                </a>
+            </div>
+            
+            <!-- Sidebar Navigation -->
+            <nav class="flex-grow pt-4">
+                <a href="dashboard.html" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100">
+                    <ion-icon name="home-outline" class="w-6 h-6 mr-3"></ion-icon>
+                    <span>Dashboard</span>
+                </a>
+                <a href="services-list.html" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100">
+                    <ion-icon name="server-outline" class="w-6 h-6 mr-3"></ion-icon>
+                    <span>My Services</span>
+                </a>
+                <a href="domains.html" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100">
+                    <ion-icon name="globe-outline" class="w-6 h-6 mr-3"></ion-icon>
+                    <span>Domains</span>
+                </a>
+                <a href="billing.html" class="sidebar-link active flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100">
+                    <ion-icon name="card-outline" class="w-6 h-6 mr-3"></ion-icon>
+                    <span>Billing</span>
+                </a>
+                <a href="support.html" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100">
+                    <ion-icon name="help-buoy-outline" class="w-6 h-6 mr-3"></ion-icon>
+                    <span>Support</span>
+                </a>
+            </nav>
+            
+            <!-- Sidebar footer (Profile/Logout) -->
+            <div class="p-4 border-t border-gray-200">
+                <a href="profile.html" class="sidebar-link flex items-center w-full px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                    <ion-icon name="person-circle-outline" class="w-6 h-6 mr-3"></ion-icon>
+                    <span>Profile</span>
+                </a>
+                <a href="index.html" class="sidebar-link flex items-center w-full px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg mt-2">
+                    <ion-icon name="log-out-outline" class="w-6 h-6 mr-3"></ion-icon>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col overflow-auto">
+            
+            <!-- Top Bar -->
+            <header class="bg-white shadow-sm h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8">
+                <!-- Mobile Menu Button -->
+                <button id="hamburger-btn" type="button" class="hamburger-btn inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden" aria-controls="mobile-sidebar" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <div class="w-6 h-6 flex flex-col justify-around">
+                        <span class="hamburger-line line-1 block w-full h-0.5 bg-current transform"></span>
+                        <span class="hamburger-line line-2 block w-full h-0.5 bg-current"></span>
+                        <span class="hamburger-line line-3 block w-full h-0.5 bg-current transform"></span>
+                    </div>
+                </button>
+                
+                <!-- Welcome Message (hidden on mobile) -->
+                <div class="hidden md:block">
+                    <h1 class="text-xl font-semibold text-gray-900">Payment Checkout</h1>
+                </div>
+                
+                <!-- Top-right actions -->
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-full text-gray-500 hover:text-gray-700 hover:bg-gray-100">
+                        <span class="sr-only">Notifications</span>
+                        <ion-icon name="notifications-outline" class="w-6 h-6"></ion-icon>
+                    </button>
+                    <a href="billing.html" class="hidden md:inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+                        Back
+                    </a>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="flex-1 p-6 md:p-10 overflow-y-auto">
+                <!-- Page Title -->
+                <h1 class="text-3xl font-bold text-gray-900 mb-2 md:hidden">Payment Checkout</h1>
+                <p class="text-gray-600 mb-8">Complete your payment to invoice <span id="invoice-ref">INV-00121</span></p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Left: Payment Form -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <!-- Payment Methods Selection -->
+                        <div class="bg-white shadow-lg rounded-lg p-6">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-6">Select Payment Method</h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <!-- Credit Card -->
+                                <div class="payment-method selected cursor-pointer rounded-lg p-4" onclick="selectPaymentMethod(this, 'credit-card')">
+                                    <div class="flex items-center mb-3">
+                                        <input type="radio" id="radio-credit-card" name="payment-method" value="credit-card" checked class="w-4 h-4 text-blue-600">
+                                        <label for="radio-credit-card" class="ml-3 font-semibold text-gray-900 cursor-pointer">Credit Card</label>
+                                    </div>
+                                    <div class="ml-7 text-sm text-gray-600">Visa, Mastercard, Amex</div>
+                                </div>
+
+                                <!-- Saved Payment Methods -->
+                                <div id="saved-methods-container"></div>
+
+                                <!-- PayPal -->
+                                <div class="payment-method cursor-pointer rounded-lg p-4" onclick="selectPaymentMethod(this, 'paypal')">
+                                    <div class="flex items-center mb-3">
+                                        <input type="radio" id="radio-paypal" name="payment-method" value="paypal" class="w-4 h-4 text-blue-600">
+                                        <label for="radio-paypal" class="ml-3 font-semibold text-gray-900 cursor-pointer">PayPal</label>
+                                    </div>
+                                    <div class="ml-7 text-sm text-gray-600">PayPal Account</div>
+                                </div>
+
+                                <!-- Bank Transfer -->
+                                <div class="payment-method cursor-pointer rounded-lg p-4" onclick="selectPaymentMethod(this, 'bank-transfer')">
+                                    <div class="flex items-center mb-3">
+                                        <input type="radio" id="radio-bank" name="payment-method" value="bank-transfer" class="w-4 h-4 text-blue-600">
+                                        <label for="radio-bank" class="ml-3 font-semibold text-gray-900 cursor-pointer">Bank Transfer</label>
+                                    </div>
+                                    <div class="ml-7 text-sm text-gray-600">Direct Bank Transfer</div>
+                                </div>
+                            </div>
+
+                            <!-- Credit Card Form -->
+                            <div id="credit-card-form">
+                                <h3 class="font-semibold text-gray-900 mb-4">Card Details</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Cardholder Name</label>
+                                        <input type="text" placeholder="John Doe" id="cardholder-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+                                        <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" id="card-number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Expiry Date</label>
+                                            <input type="text" placeholder="MM/YY" maxlength="5" id="expiry-date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+                                            <input type="text" placeholder="123" maxlength="3" id="cvv" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PayPal Form -->
+                            <div id="paypal-form" style="display: none;">
+                                <h3 class="font-semibold text-gray-900 mb-4">PayPal Details</h3>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">PayPal Email</label>
+                                    <input type="email" placeholder="your@paypal.com" id="paypal-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+
+                            <!-- Bank Transfer Form -->
+                            <div id="bank-transfer-form" style="display: none;">
+                                <h3 class="font-semibold text-gray-900 mb-4">Bank Transfer Details</h3>
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-gray-700">
+                                    <p class="font-semibold text-gray-900 mb-2">Please transfer to:</p>
+                                    <p><strong>Bank Name:</strong> Tech Bank Corp</p>
+                                    <p><strong>Account Number:</strong> 1234567890</p>
+                                    <p><strong>Routing Number:</strong> 987654321</p>
+                                    <p><strong>Reference:</strong> <span id="bank-reference">INV-00121</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Order Summary -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-6 sticky top-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Payment Summary</h3>
+                            
+                            <div class="space-y-3 text-sm mb-6">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Invoice</span>
+                                    <span class="font-medium text-gray-900" id="summary-invoice">INV-00121</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Amount Due</span>
+                                    <span class="font-medium text-gray-900" id="summary-amount">$15.00</span>
+                                </div>
+                                <div class="border-t border-blue-300 pt-3 mt-3">
+                                    <div class="flex justify-between">
+                                        <span class="font-semibold text-gray-900">Total</span>
+                                        <span class="text-2xl font-bold text-blue-600" id="summary-total">$15.00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Process Payment Button -->
+                            <button onclick="processPayment()" class="w-full px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-green-600 hover:bg-green-700 transition-colors mb-3">
+                                <ion-icon name="lock-closed-outline" class="w-5 h-5 mr-2 inline"></ion-icon>
+                                Complete Payment
+                            </button>
+
+                            <a href="billing.html" class="w-full block px-6 py-3 border border-gray-300 text-base font-medium rounded-lg text-center text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+                                Cancel
+                            </a>
+
+                            <!-- Security Badge -->
+                            <div class="mt-6 pt-6 border-t border-blue-300">
+                                <p class="text-xs text-gray-600 text-center flex items-center justify-center">
+                                    <ion-icon name="shield-checkmark-outline" class="w-4 h-4 mr-1 text-green-600"></ion-icon>
+                                    Secure SSL Encrypted
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+            function toggleSidebar() {
+                const isExpanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
+                hamburgerBtn.setAttribute('aria-expanded', !isExpanded);
+                hamburgerBtn.classList.toggle('open');
+                mobileSidebar.classList.toggle('open');
+                sidebarOverlay.classList.toggle('hidden');
+            }
+
+            hamburgerBtn.addEventListener('click', toggleSidebar);
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+
+            // Load payment data
+            loadPaymentData();
+            loadSavedPaymentMethods();
+        });
+
+        function loadPaymentData() {
+            const params = new URLSearchParams(window.location.search);
+            const invoiceId = params.get('invoice') || localStorage.getItem('invoiceId') || 'INV-00121';
+            const amount = params.get('amount') || localStorage.getItem('paymentAmount') || '15.00';
+
+            document.getElementById('invoice-ref').textContent = invoiceId;
+            document.getElementById('summary-invoice').textContent = invoiceId;
+            document.getElementById('summary-amount').textContent = `$${parseFloat(amount).toFixed(2)}`;
+            document.getElementById('summary-total').textContent = `$${parseFloat(amount).toFixed(2)}`;
+            document.getElementById('bank-reference').textContent = invoiceId;
+        }
+
+        function loadSavedPaymentMethods() {
+            const paymentMethods = JSON.parse(localStorage.getItem('paymentMethods') || '[]');
+            const container = document.getElementById('saved-methods-container');
+
+            paymentMethods.forEach((method, index) => {
+                let methodHTML = '';
+                if (method.type === 'credit-card') {
+                    methodHTML = `
+                        <div class="payment-method cursor-pointer rounded-lg p-4" onclick="selectPaymentMethod(this, 'saved-card-${index}')">
+                            <div class="flex items-center mb-3">
+                                <input type="radio" id="radio-saved-${index}" name="payment-method" value="saved-card-${index}" class="w-4 h-4 text-blue-600">
+                                <label for="radio-saved-${index}" class="ml-3 font-semibold text-gray-900 cursor-pointer">Card ending in ${method.cardNumber}</label>
+                            </div>
+                            <div class="ml-7 text-sm text-gray-600">Expires ${method.expiryDate}</div>
+                        </div>
+                    `;
+                }
+                if (methodHTML) {
+                    container.innerHTML += methodHTML;
+                }
+            });
+        }
+
+        function selectPaymentMethod(element, method) {
+            document.querySelectorAll('.payment-method').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            document.getElementById(`radio-${method}`).checked = true;
+
+            // Hide all forms
+            document.getElementById('credit-card-form').style.display = 'none';
+            document.getElementById('paypal-form').style.display = 'none';
+            document.getElementById('bank-transfer-form').style.display = 'none';
+
+            // Show selected form
+            if (method === 'credit-card') {
+                document.getElementById('credit-card-form').style.display = 'block';
+            } else if (method === 'paypal') {
+                document.getElementById('paypal-form').style.display = 'block';
+            } else if (method === 'bank-transfer') {
+                document.getElementById('bank-transfer-form').style.display = 'block';
+            }
+        }
+
+        function processPayment() {
+            const selectedMethod = document.querySelector('input[name="payment-method"]:checked').value;
+            
+            if (selectedMethod === 'credit-card') {
+                const cardNumber = document.getElementById('card-number').value;
+                if (!cardNumber) {
+                    alert('Please enter card details');
+                    return;
+                }
+            }
+
+            alert('Payment processing... In a production environment, this would process through your payment gateway.');
+            
+            // Mark invoice as paid
+            const invoiceId = localStorage.getItem('invoiceId') || 'INV-00121';
+            localStorage.setItem(`invoice-${invoiceId}-paid`, 'true');
+            
+            window.location.href = 'billing.html';
+        }
+    </script>
+
+</body>
+</html>

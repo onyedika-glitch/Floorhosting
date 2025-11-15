@@ -51,6 +51,7 @@
             transform: translateX(0);
         }
     </style>
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body class="bg-gray-100 text-gray-800">
 
@@ -60,14 +61,14 @@
         <aside id="mobile-sidebar" class="w-64 bg-white shadow-lg fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 z-50 md:flex flex-col flex-shrink-0">
             <!-- Logo -->
             <div class="flex items-center justify-center h-16 shadow-sm">
-                <a href="index.html" class="flex-shrink-0 flex items-center">
+                <a href="../../index.html" class="flex-shrink-0 flex items-center">
                     <span class="text-2xl font-bold text-blue-600">Floor Hosting</span>
                 </a>
             </div>
             
             <!-- Sidebar Navigation -->
             <nav class="flex-grow pt-4">
-                <a href="dashboard.html" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100">
+                <a href="../dashboard/dashboard.html" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100">
                     <ion-icon name="home-outline" class="w-6 h-6 mr-3"></ion-icon>
                     <span>Dashboard</span>
                 </a>
@@ -79,7 +80,7 @@
                     <ion-icon name="globe-outline" class="w-6 h-6 mr-3"></ion-icon>
                     <span>Domains</span>
                 </a>
-                <a href="billing.html" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100">
+                <a href="../billing/billing.html" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100">
                     <ion-icon name="card-outline" class="w-6 h-6 mr-3"></ion-icon>
                     <span>Billing</span>
                 </a>
@@ -95,7 +96,7 @@
                     <ion-icon name="person-circle-outline" class="w-6 h-6 mr-3"></ion-icon>
                     <span>Profile</span>
                 </a>
-                <a href="index.html" class="sidebar-link flex items-center w-full px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg mt-2">
+                <a href="../../index.html" class="sidebar-link flex items-center w-full px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg mt-2">
                     <ion-icon name="log-out-outline" class="w-6 h-6 mr-3"></ion-icon>
                     <span>Logout</span>
                 </a>
@@ -128,7 +129,7 @@
                         <span class="sr-only">Notifications</span>
                         <ion-icon name="notifications-outline" class="w-6 h-6"></ion-icon>
                     </button>
-                    <a href="dashboard.html" class="hidden md:inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+                    <a href="../dashboard/dashboard.html" class="hidden md:inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 transition-colors">
                         Back to Dashboard
                     </a>
                 </div>
@@ -144,7 +145,7 @@
                     <nav class="flex" aria-label="Breadcrumb">
                         <ol class="inline-flex items-center space-x-1 md:space-x-3">
                             <li class="inline-flex items-center">
-                                <a href="dashboard.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                                <a href="../dashboard/dashboard.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
                                     <ion-icon name="home-outline" class="w-4 h-4 mr-2"></ion-icon>
                                     Dashboard
                                 </a>
@@ -303,7 +304,7 @@
                                 </span>
                                 <ion-icon name="chevron-forward-outline" class="w-5 h-5"></ion-icon>
                             </button>
-                            <a href="renew.html" class="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
+                            <a href="./renew.html" class="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
                                 <span class="flex items-center">
                                     <ion-icon name="refresh-outline" class="w-5 h-5 mr-3 text-gray-500"></ion-icon>
                                     Renew Service
@@ -387,5 +388,6 @@
         });
     </script>
 
+    <script src="../../assets/js/main.js"></script>
 </body>
 </html>
